@@ -21,13 +21,13 @@ fun main(args: Array<String>) {
 
     //val sphere = Sphere(0.0, 1.0, 0.0, 1.0, white)
 
-    val leftBox = RectangularPrism(Vector(-1.0, 1.5, 1.0), 1.0, 3.0, 1.0,
+    val leftBox = RectangularPrism(Vector(-1.25, 1.5, 1.0), 1.0, 3.0, 1.0,
         Rotation(0.0, -30.0, 0.0), white)
-    val rightBox = RectangularPrism(Vector(0.8, .45, 0.0), 0.9, 0.9, 0.9,
+    val rightBox = RectangularPrism(Vector(1.0, .45, 0.8), 0.9, 0.9, 0.9,
         Rotation(0.0, 30.0, 0.0), white)
 
     val light = AreaLight(Vector(0.0, 4.99, 0.0), 5.0, 5.0,
-        Rotation(180.0, .0, .0), 5, 5, Color(255.0, 255.0, 255.0, true), 0.9)
+        Rotation(180.0, .0, .0), 5, 5, Color(255.0, 255.0, 255.0, true), 1.0)
 
     val camera1 = Camera(Vector(0.0, 2.5, -2.0), Vector(0.0, 2.5, 0.0), Camera.Orientation.UP,
         720, 720, 100.0)
@@ -38,10 +38,10 @@ fun main(args: Array<String>) {
 
     val scene = Scene(arrayOf(camera1), arrayOf(stage, leftBox, rightBox), arrayOf(light))
 
-    val integrator = PathTracer(scene, 5)
+    val integrator = PathTracer(scene, 10)
     val renderer = Renderer(scene, integrator)
 
-    renderer.render(10)
+    renderer.render(100)
 
     DisplayUtil.show(renderer.images[0])
 }
